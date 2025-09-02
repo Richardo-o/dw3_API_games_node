@@ -12,14 +12,13 @@ class gameService {
       console.log(error);
     }
   }
-  async Create(title, year, genre, plataform, price) {
+  async Create(title, year, price, descriptions) {
     try {
       const newGame = new Game({
         title,
         year,
-        genre,
-        plataform,
         price,
+        descriptions
       });
       await newGame.save();
     } catch (error) {
@@ -37,13 +36,12 @@ class gameService {
   }
 
   // Alterando registro do banco
-  async Update(id, title, year, genre, plataform, price) {
+  async Update(id, title, year, price, descriptions) {
     const game = await Game.findByIdAndUpdate(id, {
       title,
       year,
-      genre,
-      plataform,
       price,
+      descriptions,
     }, 
     {new: true}
   );
