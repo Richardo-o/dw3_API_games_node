@@ -1,28 +1,27 @@
-
 import express from "express";
-import mongoose from "mongoose";
+import mongoose, { connect } from 'mongoose';
+const app = express();
 import Game from "./models/Games.js";
-//Importando as rotas
+
+//importando rotas
 import gameRoutes from "./routes/gameRoutes.js";
 
-const app = express();
-
 //Configurações do express
-
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 app.use('/', gameRoutes)
 
-//Iniciando a conexão com o banco de dados do MongoDB
+//Iniciando a conexão como banco de dados mongodb
+mongoose.connect("mongodb://127.0.0.1:27017/api-thegames")
 
- mongoose.connect("mongodb://127.0.0.1:27017/api-thegames")
+//A rota Criando um retorno da API foi apagada pois está em services
 
-//Rodando api na porta 4000
 
-app.listen(4000, (error) => {
-  if (error) {
-    console.log("Ocorreu um erro " + error);
-  } else {
-    console.log(`API rodando em http://localhost:${4000}`);
-  }
+//Rodando a API na porta 4000
+const port = 4000;
+app.listen(port,(error) =>{
+    if (error) {
+        console.log(error);
+    }
+    console.log(`API rodando em http://localhost:${port}`);
 });

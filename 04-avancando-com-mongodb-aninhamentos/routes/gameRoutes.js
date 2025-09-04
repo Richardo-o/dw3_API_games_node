@@ -2,21 +2,21 @@ import express from "express";
 const gameRoutes = express.Router();
 import gameController from "../controllers/gameController.js";
 
-// A camada de routes será responsável por conter os ENDPOINTS da API
+//A camada de routes será responsável por contes os ENDPOINTS (rotas) da API
 
-//ENDPOINT para LISTAR
-gameRoutes.get("/games", gameController.getAllGames);
+//ENDPOINT para listar
+gameRoutes.get("/games", gameController.getAllgames)
 
 //ENDPOINT para CADASTRAR
-gameRoutes.post("/games", gameController.createGame);
+gameRoutes.post("/games", gameController.createGame) //a rota /games é a mesma mas vai diferenciar pela requisição (método recebido)
 
-//ENDPOINT para DELETAR
-gameRoutes.delete("/games/:id", gameController.deleteGame);
+//ENDPOINT para deletar
+gameRoutes.delete("/games/:id", gameController.deleteGame)
 
-//ENDPOINT para ALTERAR
-gameRoutes.put("/games/:id", gameController.updateGame);
+//ENDPOINT para alterar
+gameRoutes.put("/games/:id", gameController.updateGame) //#########
 
-// ENDPOINT para LISTAR um ÚNICO jogo
-gameRoutes.get("/games/:id", gameController.getOneGame);
+//Endpoint para listar um unico jogo
+gameRoutes.get("/games/:id", gameController.getOneGame) //parametro não-obrigatório ficaria assim: id?
 
 export default gameRoutes;
