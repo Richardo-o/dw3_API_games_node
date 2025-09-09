@@ -1,27 +1,22 @@
-import Game from "../models/Games.js"; // importa os models
+import Game from "../models/Games.js";
 
-// O service será responsável por conter os métodos de manipulação do banco
+// O service será responsável por conter os métodos de manipulação do banco.
 
 class gameService {
-  // classe
-
-  // Buscando os registros do banco (listar)
+  // Buscando os registros do banco
   async getAll() {
-    // método
     try {
       const games = await Game.find();
-      return games; // vai retornar um array
+      return games;
     } catch (error) {
       console.log(error);
     }
   }
-
   // Cadastrando registros no banco
   async Create(title, year, price, descriptions) {
     try {
       const newGame = new Game({
-        // criando uma instância de game para inserir esse objeto no BD
-        title, // não precisa digitar title: title, etc
+        title,
         year,
         price,
         descriptions,
@@ -43,21 +38,20 @@ class gameService {
   }
 
   // Alterando registros no banco
-  async Update(id, title, year, price, descriptions) { // <-- corrigido
+  async Update(id, title, year, price, descriptions) {
     try {
       const game = await Game.findByIdAndUpdate(
         id,
         {
-          // game é uma variável que recebe a alteração
           title,
           year,
           price,
           descriptions,
         },
-        { new: true } // após alterar, vai gerar um registro atualizado
+        { new: true }
       );
-      console.log(`Dados do game id ${id} alterados com sucesso`);
-      return game; // retorna o game alterado
+      console.log(`Dados do game com id ${id} alterados com sucesso.`);
+      return game;
     } catch (error) {
       console.log(error);
     }
@@ -66,7 +60,7 @@ class gameService {
   // Listando um registro único
   async getOne(id) {
     try {
-      const game = await Game.findOne({ _id: id }); // no mongoDB o campo id começa com underline _id
+      const game = await Game.findOne({ _id: id });
       return game;
     } catch (error) {
       console.log(error);
